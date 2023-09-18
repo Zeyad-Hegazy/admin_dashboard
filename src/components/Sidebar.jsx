@@ -4,9 +4,10 @@ import { SiShopware } from "react-icons/si";
 import { MdOutlineCancel } from "react-icons/md";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { links } from "../data/dummy";
+import { useStateContext } from "../contexts/ContextProvider";
 
 const Sidebar = () => {
-	const activeMenu = true;
+	const { activeMenu, setActiveMenu } = useStateContext();
 
 	const activeLink =
 		"flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-black text-md m-2";
@@ -27,7 +28,7 @@ const Sidebar = () => {
 						<TooltipComponent content="Menu" position="BottomCenter">
 							<button
 								type="button"
-								onClick={() => {}}
+								onClick={() => setActiveMenu(false)}
 								className="text-xl rounded-full p-3 hover:bg-light-gray mt-4 block"
 							>
 								<MdOutlineCancel />
@@ -48,7 +49,7 @@ const Sidebar = () => {
 										}
 									>
 										{link.icon}
-										<span className="cap">{link.name}</span>
+										<span className="capitalize">{link.name}</span>
 									</NavLink>
 								))}
 							</div>

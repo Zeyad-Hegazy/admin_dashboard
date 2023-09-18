@@ -24,9 +24,10 @@ import {
 } from "./pages";
 
 import "./App.css";
+import { useStateContext } from "./contexts/ContextProvider";
 
 const App = () => {
-	const activeMenue = true;
+	const { activeMenu } = useStateContext();
 
 	return (
 		<div>
@@ -43,7 +44,7 @@ const App = () => {
 							</button>
 						</TooltipComponent>
 					</div>
-					{activeMenue ? (
+					{activeMenu ? (
 						<div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white">
 							<Sidebar />
 						</div>
@@ -54,7 +55,7 @@ const App = () => {
 					)}
 					<div
 						className={`dark:bg-main-dark-bg bg-main-bg min-h-screen w-full ${
-							activeMenue ? "md:ml-72" : "flex-2"
+							activeMenu ? "md:ml-72" : "flex-2"
 						}`}
 					>
 						<div className="fixid md:static bg-main-bg dark:bg-main-dark-bg navbar w-full">
