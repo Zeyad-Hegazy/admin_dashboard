@@ -46,3 +46,5 @@ module.exports = {
 	},
 	plugins: [],
 };
+
+// https://img.freepik.com/free-vector/flat-design-illustration-customer-support_23-2148887720.jpg?w=2000
