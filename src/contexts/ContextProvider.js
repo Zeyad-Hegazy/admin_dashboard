@@ -25,9 +25,15 @@ export const ContextProvider = ({ children }) => {
 		if (e.target.value === "Dark") {
 			setCurrentMode(e.target.value);
 			setCurrentColor("#F7F7F7");
+
 			localStorage.setItem("mainColor", "#F7F7F7");
 			localStorage.setItem("themeMode", e.target.value);
 		} else if (e.target.value === "Light") {
+			if (currentColor === "#F7F7F7") {
+				setCurrentColor("#03C9D7");
+				localStorage.setItem("mainColor", "#03C9D7");
+			}
+
 			setCurrentMode(e.target.value);
 			setCurrentColor(localStorage.getItem("mainColor"));
 			localStorage.setItem("mainColor", localStorage.getItem("mainColor"));
