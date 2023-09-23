@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { FiShoppingCart } from "react-icons/fi";
 import { BsChatLeft } from "react-icons/bs";
@@ -18,7 +18,7 @@ const NavButton = ({ title, customFunc, color, dotColor, icon }) => {
 				type="button"
 				onClick={customFunc}
 				style={{ color }}
-				className="relative text-xl rounded-full p-3 hover:bg-light-gray"
+				className="relative text-xl rounded-full p-3 dark:hover:bg-slate-900 hover:bg-light-gray"
 			>
 				<span
 					style={{ background: dotColor }}
@@ -31,6 +31,12 @@ const NavButton = ({ title, customFunc, color, dotColor, icon }) => {
 };
 
 const Navbar = () => {
+	const [mainColor, setMainColor] = useState(localStorage.getItem("mainColor"));
+
+	useEffect(() => {
+		setMainColor(localStorage.getItem("mainColor"));
+	}, [localStorage.getItem("mainColor")]);
+
 	const {
 		activeMenu,
 		setActiveMenu,
@@ -44,7 +50,6 @@ const Navbar = () => {
 	useEffect(() => {
 		const handleResize = () => setScreenSize(window.innerWidth);
 		window.addEventListener("resize", handleResize);
-		handleResize();
 		return () => window.removeEventListener("resize", handleResize);
 	}, []);
 
@@ -61,21 +66,21 @@ const Navbar = () => {
 			<NavButton
 				title="Menu"
 				customFunc={() => setActiveMenu((prevState) => !prevState)}
-				color="blue"
+				color={mainColor}
 				icon={<AiOutlineMenu />}
 			/>
 			<div className="flex">
 				<NavButton
 					title="Cart"
 					customFunc={() => handleClick("cart")}
-					color="blue"
+					color={mainColor}
 					icon={<FiShoppingCart />}
 				/>
 
 				<NavButton
 					title="Notifications"
 					customFunc={() => handleClick("notification")}
-					color="blue"
+					color={mainColor}
 					dotColor="#03C9D7"
 					icon={<RiNotification3Line />}
 				/>
@@ -83,7 +88,7 @@ const Navbar = () => {
 				<NavButton
 					title="Chat"
 					customFunc={() => handleClick("chat")}
-					color="blue"
+					color={mainColor}
 					dotColor="#03C9D7"
 					icon={<BsChatLeft />}
 				/>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { BsDot } from "react-icons/bs";
 import { Stacked, Pie, Button, SparkLine } from "../components";
@@ -10,6 +10,14 @@ import {
 import { useStateContext } from "../contexts/ContextProvider";
 
 const Ecommerce = () => {
+	const { currentMode } = useStateContext();
+
+	const [mainColor, setMainColor] = useState(localStorage.getItem("mainColor"));
+
+	useEffect(() => {
+		setMainColor(localStorage.getItem("mainColor"));
+	}, [localStorage.getItem("mainColor")]);
+
 	return (
 		<div className="mt-12">
 			<div className="flex flex-wrap lg:flex-nowrap justify-center">
@@ -20,8 +28,8 @@ const Ecommerce = () => {
 					</div>
 					<div className="m-6">
 						<Button
-							color="white"
-							backgroundColor="blue"
+							color={currentMode === "Dark" ? "black" : "white"}
+							backgroundColor={mainColor}
 							text="Download"
 							borderRadius="10px"
 							size="md"
@@ -58,7 +66,7 @@ const Ecommerce = () => {
 					<div className="flex justify-between">
 						<p className="font-semibold text-xl">Revenue Updates</p>
 						<div className="flex items-center gap-4">
-							<p className="flex items-center gap-2 text-gray-600 hover:drop-shadow-xl">
+							<p className="flex items-center gap-2 text-gray-600 hover:drop-shadow-xl dark:text-gray-200">
 								<span>
 									<BsDot />
 								</span>
@@ -81,29 +89,29 @@ const Ecommerce = () => {
 										23%
 									</span>
 								</p>
-								<p className="text-gray-500 mt-1">Budget</p>
+								<p className="text-gray-500 mt-1 dark:text-gray-300">Budget</p>
 							</div>
 							<div className="mt-8">
 								<p>
 									<span className="text-3xl font-semibold">$48,438</span>
 								</p>
-								<p className="text-gray-500 mt-1">Expense</p>
+								<p className="text-gray-500 mt-1 dark:text-gray-300">Expense</p>
 							</div>
 							<div className="mt-5">
 								<SparkLine
-									currentColor="blue"
+									currentColor={currentMode === "Black" ? "#F7F7F7" : mainColor}
 									id="line-parkline"
 									type="Line"
 									height="80px"
 									width="250px"
 									data={SparklineAreaData}
-									color="blue"
+									color={mainColor}
 								/>
 							</div>
 							<div className="mt-10">
 								<Button
-									color="white"
-									backgroundColor="blue"
+									color={currentMode === "Dark" ? "black" : "white"}
+									backgroundColor={mainColor}
 									text="Download Report"
 									borderRadius="10px"
 									size="md"

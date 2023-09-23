@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { SiShopware } from "react-icons/si";
 import { MdOutlineCancel } from "react-icons/md";
@@ -7,7 +7,14 @@ import { links } from "../data/dummy";
 import { useStateContext } from "../contexts/ContextProvider";
 
 const Sidebar = () => {
-	const { activeMenu, setActiveMenu, screenSize } = useStateContext();
+	const { activeMenu, setActiveMenu, screenSize, currentMode } =
+		useStateContext();
+
+	const [mainColor, setMainColor] = useState(localStorage.getItem("mainColor"));
+
+	useEffect(() => {
+		setMainColor(localStorage.getItem("mainColor"));
+	}, [localStorage.getItem("mainColor")]);
 
 	const activeLink =
 		"flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-black text-md m-2";
@@ -17,6 +24,16 @@ const Sidebar = () => {
 	const handleCloseSidebar = () => {
 		if (activeMenu && screenSize <= 900) {
 			setActiveMenu(false);
+		}
+	};
+
+	const linksStyle = (isActive) => {
+		if (currentMode === "Light" && isActive) {
+			return { backgroundColor: mainColor, color: "white" };
+		} else if (currentMode === "Dark" && mainColor === "#F7F7F7" && isActive) {
+			return { backgroundColor: "#F7F7F7", color: "black" };
+		} else if (currentMode === "Dark" && mainColor !== "#F7F7F7" && isActive) {
+			return { backgroundColor: mainColor, color: "white" };
 		}
 	};
 
@@ -35,7 +52,7 @@ const Sidebar = () => {
 							<button
 								type="button"
 								onClick={() => setActiveMenu(false)}
-								className="text-xl rounded-full p-3 hover:bg-light-gray mt-4 block"
+								className="text-xl rounded-full p-3 hover:bg-light-gray mt-4 block dark:text-gray-200 dark:hover:bg-slate-600"
 							>
 								<MdOutlineCancel />
 							</button>
@@ -50,6 +67,7 @@ const Sidebar = () => {
 										to={`/${link.name}`}
 										key={link.name}
 										onClick={handleCloseSidebar}
+										style={({ isActive }) => linksStyle(isActive)}
 										className={({ isActive }) =>
 											isActive ? activeLink : normalLink
 										}
