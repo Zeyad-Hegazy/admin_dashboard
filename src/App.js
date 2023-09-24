@@ -31,9 +31,6 @@ const App = () => {
 	const [mainMode, setMainMode] = useState(localStorage.getItem("themeMode"));
 
 	useEffect(() => {
-		localStorage.setItem("mainColor", "#03C9D7");
-		localStorage.setItem("themeMode", "Light");
-
 		setMainColor(localStorage.getItem("mainColor"));
 		setMainMode(localStorage.getItem("themeMode"));
 	}, [localStorage.getItem("mainColor"), localStorage.getItem("themeMode")]);
