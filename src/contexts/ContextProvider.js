@@ -14,10 +14,14 @@ export const ContextProvider = ({ children }) => {
 	const [isClicked, setIsClicked] = useState(initialState);
 	const [screenSize, setScreenSize] = useState(undefined);
 	const [currentColor, setCurrentColor] = useState(
-		localStorage.getItem("mainColor") || "#03C9D7"
+		localStorage.getItem("mainColor")
+			? localStorage.getItem("mainColor")
+			: "#03C9D7"
 	);
 	const [currentMode, setCurrentMode] = useState(
-		localStorage.getItem("themeMode") || "Light"
+		localStorage.getItem("themeMode")
+			? localStorage.getItem("themeMode")
+			: "Light"
 	);
 	const [themeSettings, setThemeSettings] = useState(false);
 
