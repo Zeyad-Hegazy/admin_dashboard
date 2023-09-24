@@ -108,10 +108,10 @@ const Navbar = () => {
 					</div>
 				</TooltipComponent>
 
-				{isClicked.cart && <Cart />}
+				{/* {isClicked.cart && <Cart />}
 				{isClicked.chat && <Chat />}
 				{isClicked.notification && <Notifications />}
-				{isClicked.userProfile && <UserProfile />}
+				{isClicked.userProfile && <UserProfile />} */}
 			</div>
 		</div>
 	);

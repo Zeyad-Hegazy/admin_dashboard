@@ -14,7 +14,7 @@ const SparkLine = ({ id, height, width, currentColor, data, type, color }) => {
 			lineWidth={1}
 			valueType="Numeric"
 			fill={color}
-			border={{ color: currentColor, width: 2 }}
+			border={{ color: currentColor, width: 10 }}
 			dataSource={data}
 			xName="xval"
 			yName="yval"
