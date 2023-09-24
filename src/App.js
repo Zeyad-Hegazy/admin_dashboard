@@ -3,13 +3,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
-import { Navbar, Footer, Sidebar, ThemeSettings } from "./components";
+import { Navbar, Sidebar, ThemeSettings } from "./components";
 import {
 	Ecommerce,
 	Orders,
 	Calendar,
 	Employees,
-	Stacked,
 	Pyramid,
 	Customers,
 	Kanban,
@@ -18,8 +17,6 @@ import {
 	Line,
 	Pie,
 	Financial,
-	// ColorPicker,
-	ColorMapping,
 	Editor,
 } from "./pages";
 
@@ -92,7 +89,6 @@ const App = () => {
 								<Route path="/calendar" element={<Calendar />} />
 								<Route path="/kanban" element={<Kanban />} />
 								<Route path="/editor" element={<Editor />} />
-								{/* <Route path="/color-picker" element={<ColorPicker />} /> */}
 
 								{/* Charts */}
 								<Route path="/line" element={<Line />} />
@@ -100,9 +96,7 @@ const App = () => {
 								<Route path="/bar" element={<Bar />} />
 								<Route path="/pie" element={<Pie />} />
 								<Route path="/financial" element={<Financial />} />
-								<Route path="/color-mapping" element={<ColorMapping />} />
 								<Route path="/pyramid" element={<Pyramid />} />
-								<Route path="/stacked" element={<Stacked />} />
 							</Routes>
 						</div>
 					</div>

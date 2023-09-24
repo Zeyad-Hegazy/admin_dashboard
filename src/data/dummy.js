@@ -584,18 +584,18 @@ export const links = [
 				name: "financial",
 				icon: <RiStockLine />,
 			},
-			{
-				name: "color-mapping",
-				icon: <BsBarChart />,
-			},
+			// {
+			// 	name: "color-mapping",
+			// 	icon: <BsBarChart />,
+			// },
 			{
 				name: "pyramid",
 				icon: <GiLouvrePyramid />,
 			},
-			{
-				name: "stacked",
-				icon: <AiOutlineBarChart />,
-			},
+			// {
+			// 	name: "stacked",
+			// 	icon: <AiOutlineBarChart />,
+			// },
 		],
 	},
 ];
