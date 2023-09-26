@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { SiShopware } from "react-icons/si";
 import { MdOutlineCancel } from "react-icons/md";
@@ -7,14 +7,8 @@ import { links } from "../data/dummy";
 import { useStateContext } from "../contexts/ContextProvider";
 
 const Sidebar = () => {
-	const { activeMenu, setActiveMenu, screenSize, currentMode } =
+	const { activeMenu, setActiveMenu, screenSize, currentMode, currentColor } =
 		useStateContext();
-
-	const [mainColor, setMainColor] = useState(localStorage.getItem("mainColor"));
-
-	useEffect(() => {
-		setMainColor(localStorage.getItem("mainColor"));
-	}, [localStorage.getItem("mainColor")]);
 
 	const activeLink =
 		"flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-black text-md m-2";
@@ -29,11 +23,19 @@ const Sidebar = () => {
 
 	const linksStyle = (isActive) => {
 		if (currentMode === "Light" && isActive) {
-			return { backgroundColor: mainColor, color: "white" };
-		} else if (currentMode === "Dark" && mainColor === "#F7F7F7" && isActive) {
+			return { backgroundColor: currentColor, color: "white" };
+		} else if (
+			currentMode === "Dark" &&
+			currentColor === "#F7F7F7" &&
+			isActive
+		) {
 			return { backgroundColor: "#F7F7F7", color: "black" };
-		} else if (currentMode === "Dark" && mainColor !== "#F7F7F7" && isActive) {
-			return { backgroundColor: mainColor, color: "white" };
+		} else if (
+			currentMode === "Dark" &&
+			currentColor !== "#F7F7F7" &&
+			isActive
+		) {
+			return { backgroundColor: currentColor, color: "white" };
 		}
 	};
 

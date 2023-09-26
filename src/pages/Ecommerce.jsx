@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BsDot } from "react-icons/bs";
 import { Stacked, Button, SparkLine } from "../components";
 import { earningData, SparklineAreaData } from "../data/dummy";
 import { useStateContext } from "../contexts/ContextProvider";
 
 const Ecommerce = () => {
-	const { currentMode } = useStateContext();
-
-	const [mainColor, setMainColor] = useState(localStorage.getItem("mainColor"));
-
-	useEffect(() => {
-		setMainColor(localStorage.getItem("mainColor"));
-	}, [localStorage.getItem("mainColor")]);
+	const { currentMode, currentColor } = useStateContext();
 
 	return (
 		<div className="mt-12">
@@ -24,7 +18,7 @@ const Ecommerce = () => {
 					<div className="m-6">
 						<Button
 							color={currentMode === "Dark" ? "black" : "white"}
-							backgroundColor={mainColor}
+							backgroundColor={currentColor}
 							text="Download"
 							borderRadius="10px"
 							size="md"
@@ -94,19 +88,21 @@ const Ecommerce = () => {
 							</div>
 							<div className="mt-5">
 								<SparkLine
-									currentColor={currentMode === "Black" ? "#F7F7F7" : mainColor}
+									currentColor={
+										currentMode === "Black" ? "#F7F7F7" : currentColor
+									}
 									id="line-parkline"
 									type="Line"
 									height="80px"
 									width="250px"
 									data={SparklineAreaData}
-									color={mainColor}
+									color={currentColor}
 								/>
 							</div>
 							<div className="mt-10">
 								<Button
 									color={currentMode === "Dark" ? "black" : "white"}
-									backgroundColor={mainColor}
+									backgroundColor={currentColor}
 									text="Download Report"
 									borderRadius="10px"
 									size="md"

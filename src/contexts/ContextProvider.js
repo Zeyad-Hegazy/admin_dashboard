@@ -13,35 +13,19 @@ export const ContextProvider = ({ children }) => {
 	const [activeMenu, setActiveMenu] = useState(true);
 	const [isClicked, setIsClicked] = useState(initialState);
 	const [screenSize, setScreenSize] = useState(undefined);
-	const [currentColor, setCurrentColor] = useState(
-		localStorage.getItem("mainColor")
-			? localStorage.getItem("mainColor")
-			: "#03C9D7"
-	);
-	const [currentMode, setCurrentMode] = useState(
-		localStorage.getItem("themeMode")
-			? localStorage.getItem("themeMode")
-			: "Light"
-	);
+	const [currentColor, setCurrentColor] = useState("#03C9D7");
+	const [currentMode, setCurrentMode] = useState("Light");
 	const [themeSettings, setThemeSettings] = useState(false);
 
 	const setMode = (e) => {
 		if (e.target.value === "Dark") {
-			setCurrentMode(e.target.value);
 			setCurrentColor("#F7F7F7");
-
-			localStorage.setItem("mainColor", "#F7F7F7");
-			localStorage.setItem("themeMode", e.target.value);
-		} else if (e.target.value === "Light") {
-			if (currentColor === "#F7F7F7") {
-				setCurrentColor("#03C9D7");
-				localStorage.setItem("mainColor", "#03C9D7");
-			}
-
+			setCurrentMode("Dark");
+		} else if (e.target.value === "Light" && currentColor === "#F7F7F7") {
+			setCurrentColor("#03C9D7");
+			setCurrentMode("Light");
+		} else {
 			setCurrentMode(e.target.value);
-			setCurrentColor(localStorage.getItem("mainColor"));
-			localStorage.setItem("mainColor", localStorage.getItem("mainColor"));
-			localStorage.setItem("themeMode", e.target.value);
 		}
 	};
 

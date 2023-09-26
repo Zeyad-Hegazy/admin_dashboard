@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { FiShoppingCart } from "react-icons/fi";
 import { BsChatLeft } from "react-icons/bs";
@@ -31,11 +31,7 @@ const NavButton = ({ title, customFunc, color, dotColor, icon }) => {
 };
 
 const Navbar = () => {
-	const [mainColor, setMainColor] = useState(localStorage.getItem("mainColor"));
-
-	useEffect(() => {
-		setMainColor(localStorage.getItem("mainColor"));
-	}, [localStorage.getItem("mainColor")]);
+	const { currentColor } = useStateContext();
 
 	const {
 		activeMenu,
@@ -66,21 +62,21 @@ const Navbar = () => {
 			<NavButton
 				title="Menu"
 				customFunc={() => setActiveMenu((prevState) => !prevState)}
-				color={mainColor}
+				color={currentColor}
 				icon={<AiOutlineMenu />}
 			/>
 			<div className="flex">
 				<NavButton
 					title="Cart"
 					customFunc={() => handleClick("cart")}
-					color={mainColor}
+					color={currentColor}
 					icon={<FiShoppingCart />}
 				/>
 
 				<NavButton
 					title="Notifications"
 					customFunc={() => handleClick("notification")}
-					color={mainColor}
+					color={currentColor}
 					dotColor="#03C9D7"
 					icon={<RiNotification3Line />}
 				/>
@@ -88,7 +84,7 @@ const Navbar = () => {
 				<NavButton
 					title="Chat"
 					customFunc={() => handleClick("chat")}
-					color={mainColor}
+					color={currentColor}
 					dotColor="#03C9D7"
 					icon={<BsChatLeft />}
 				/>
