@@ -34,8 +34,8 @@ export const ContextProvider = ({ children }) => {
 		localStorage.setItem("mainColor", color);
 	};
 
-	const handleClick = (clicked) => {
-		setIsClicked({ ...initialState, [clicked]: true });
+	const handleClick = (clicked, state) => {
+		setIsClicked({ ...initialState, [clicked]: state });
 	};
 
 	return (

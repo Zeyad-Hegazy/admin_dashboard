@@ -65,17 +65,17 @@ const Navbar = () => {
 				color={currentColor}
 				icon={<AiOutlineMenu />}
 			/>
-			<div className="flex">
+			<div className="flex relative">
 				<NavButton
 					title="Cart"
-					customFunc={() => handleClick("cart")}
+					customFunc={() => handleClick("cart", true)}
 					color={currentColor}
 					icon={<FiShoppingCart />}
 				/>
 
 				<NavButton
 					title="Notifications"
-					customFunc={() => handleClick("notification")}
+					customFunc={() => handleClick("notification", true)}
 					color={currentColor}
 					dotColor="#03C9D7"
 					icon={<RiNotification3Line />}
@@ -83,7 +83,7 @@ const Navbar = () => {
 
 				<NavButton
 					title="Chat"
-					customFunc={() => handleClick("chat")}
+					customFunc={() => handleClick("chat", true)}
 					color={currentColor}
 					dotColor="#03C9D7"
 					icon={<BsChatLeft />}
@@ -91,7 +91,7 @@ const Navbar = () => {
 				<TooltipComponent content="User Profile" position="BottomCenter">
 					<div
 						className="flex items-center p-1 gap-2 cursor-pointer hover:bg-light-gray rounded-lg"
-						onClick={() => handleClick("userProfile")}
+						onClick={() => handleClick("userProfile", true)}
 					>
 						<img src={avatar} alt="avatar" className="h-8 w-8 rounded-full " />
 						<p>
@@ -104,10 +104,10 @@ const Navbar = () => {
 					</div>
 				</TooltipComponent>
 
-				{/* {isClicked.cart && <Cart />}
+				{isClicked.cart && <Cart />}
 				{isClicked.chat && <Chat />}
 				{isClicked.notification && <Notifications />}
-				{isClicked.userProfile && <UserProfile />} */}
+				{isClicked.userProfile && <UserProfile />}
 			</div>
 		</div>
 	);
